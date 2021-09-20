@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Peak Financial</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      h3,
+      p {
+        font-family: "Open Sans", sans-serif;
+      }
+
+      p {
+        font-size: 15px;
+      }
+
+      .tootlTips {
+        text-align: center;
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+
+      :root {
+        --inputColor: #dfc479;
+      }
+
+      .gameDiv {
+        width: 80%;
+        margin: 0px auto;
+      }
+
+      .stepDiv {
+        padding: 50px 0px;
+      }
+
+      .cardsAllDiv {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+      }
+
+      .stepName {
+        border-right: 2px solid var(--inputColor);
+        padding-right: 15px;
+        margin-right: 15px;
+      }
+
+      .steps {
+        text-align: center;
+        font-size: 28px;
+        font-family: "Open Sans", sans-serif;
+        margin-bottom: 20px;
+      }
+
+      .cardBox {
+        width: 30%;
+      }
+
+      .cardSolo {
+        display: block;
+        max-width: 250px;
+        margin: 15px auto;
+        border-radius: 4px;
+      }
+
+      .contactInfo {
+        text-align: center;
+        padding: 30px 0px;
+      }
+
+      ::placeholder {
+        color: var(--inputColor);
+        letter-spacing: 1px;
+      }
+
+      .contactInfo > input {
+        display: inline-block;
+        border-radius: 0px;
+        border: none;
+        border-bottom: 1px solid var(--inputColor);
+        width: 25%;
+        height: 40px;
+        background-color: transparent;
+        outline: none;
+        padding-left: 15px;
+        margin: 15px;
+        font-family: "Open Sans", sans-serif;
+        color: var(--inputColor);
+      }
+
+      .stepButton {
+        border-radius: 0;
+        border: 1px solid var(--inputColor);
+        background-color: transparent;
+        padding: 7px 15px;
+        margin: 15px 0px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        transition: background-color 300ms;
+      }
+
+      .stepButton:hover,
+      .stepButton:focus {
+        background-color: var(--inputColor);
+      }
+
+      .prioritizedCards img {
+        display: block;
+        margin: 15px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gameDiv">
+      <div class="stepDiv" id="stepOne">
+        <h3 class="steps">Fill Out The info to Start</h3>
+        <div class="contactInfo">
+          <input type="text" placeholder="Your Name" />
+          <input type="email" placeholder="Mail" />
+        </div>
+        <button class="stepButton">Next</button>
+      </div>
+
+      <div class="stepDiv" id="stepTwo">
+        <h3 class="steps">
+          <span class="stepName">Step 1</span>List your cards from the top
+          priorities to the lowest accordingly
+        </h3>
+        <p class="tootlTips">
+          Hint: Drag the cards to serialize the way you desire.
+        </p>
+        <div class="cardsAllDiv">
+          <div class="cardBox" id="green">
+            <img class="cardSolo" src="Cards/green-1.svg" alt="" />
+            <img class="cardSolo" src="Cards/green-2.svg" alt="" />
+            <img class="cardSolo" src="Cards/green-3.svg" alt="" />
+            <img class="cardSolo" src="Cards/green-4.svg" alt="" />
+          </div>
+
+          <div class="cardBox" id="brown">
+            <img class="cardSolo" src="Cards/brown-1.svg" alt="" />
+            <img class="cardSolo" src="Cards/brown-2.svg" alt="" />
+            <img class="cardSolo" src="Cards/brown-3.svg" alt="" />
+            <img class="cardSolo" src="Cards/brown-4.svg" alt="" />
+          </div>
+
+          <div class="cardBox" id="yellow">
+            <img class="cardSolo" src="Cards/yellow-1.svg" alt="" />
+            <img class="cardSolo" src="Cards/yellow-2.svg" alt="" />
+            <img class="cardSolo" src="Cards/yellow-3.svg" alt="" />
+            <img class="cardSolo" src="Cards/yellow-4.svg" alt="" />
+          </div>
+        </div>
+        <button class="stepButton">Next</button>
+      </div>
+
+      <div class="StepDiv" id="stepThree">
+        <h3 class="steps">
+          <span class="stepName">Step 2</span>Your selected top priorities cards
+          are as follows-
+        </h3>
+        <p class="tootlTips">
+          Hint: You can also prioritize these 3 by dragging.
+        </p>
+        <div class="prioritizedCards">
+          <img class="cardSolo" src="Cards/green-4.svg" alt="" />
+          <img class="cardSolo" src="Cards/brown-1.svg" alt="" />
+          <img class="cardSolo" src="Cards/yellow-2.svg" alt="" />
+        </div>
+        <button class="stepButton">Prioritize Accordingly This List</button>
+        <button class="stepButton">Next</button>
+      </div>
+
+      <div class="stepDiv" id="stepFour">
+        <h3 class="steps">
+          <span class="stepName">Step 3</span>Select 2 more cards to fulfill the
+          list.
+        </h3>
+        <p class="tootlTips">
+          Hint: You can select 2 cards from your remaining 9 cards below.
+        </p>
+
+        <div class="cardsAllDiv">
+          <div class="cardBox" id="green">
+            <img class="cardSolo" src="Cards/green-1.svg" alt="" />
+            <img class="cardSolo" src="Cards/green-2.svg" alt="" />
+            <img class="cardSolo" src="Cards/green-3.svg" alt="" />
+          </div>
+
+          <div class="cardBox" id="brown">
+            <img class="cardSolo" src="Cards/brown-2.svg" alt="" />
+            <img class="cardSolo" src="Cards/brown-3.svg" alt="" />
+            <img class="cardSolo" src="Cards/brown-4.svg" alt="" />
+          </div>
+
+          <div class="cardBox" id="yellow">
+            <img class="cardSolo" src="Cards/yellow-1.svg" alt="" />
+            <img class="cardSolo" src="Cards/yellow-3.svg" alt="" />
+            <img class="cardSolo" src="Cards/yellow-4.svg" alt="" />
+          </div>
+        </div>
+        <button class="stepButton">Re Select 2 Cards</button>
+        <button class="stepButton">Next</button>
+      </div>
+
+      <div class="stepDiv" id="stepFive">
+        <h3 class="steps">
+          <span class="stepName">Final Step</span>Your selected cards are listed
+          according to priority-
+        </h3>
+        <p class="tootlTips">
+          Hint: You can also re arrange these cards by dragging.
+        </p>
+        <div class="prioritizedCards">
+          <img class="cardSolo" src="Cards/green-4.svg" alt="" />
+          <img class="cardSolo" src="Cards/brown-1.svg" alt="" />
+          <img class="cardSolo" src="Cards/yellow-2.svg" alt="" />
+          <img class="cardSolo" src="Cards/yellow-4.svg" alt="" />
+          <img class="cardSolo" src="Cards/brown-2.svg" alt="" />
+        </div>
+        <button style="display: block; margin: 0 auto" class="stepButton">
+          Finish
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
