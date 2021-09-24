@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<div class="stepDiv" id="stepTwo">
-			<h1>{{errorMessage}}</h1>
 			<h3 class="steps">
 				<span class="stepName">Step 1</span>List your cards from the top
 				priorities to the lowest accordingly
@@ -26,7 +25,6 @@
 					</draggable>
 				</div>
 				<div id="yellow" class="cardBox">
-					<!-- <Card v-for="link in allCards.yellow" :url="link" :key="link"/> -->
 					<draggable v-model="allCards.yellow">
 						<transition-group>
 							<Card v-for="link in allCards.yellow" :url="link" :key="link" />
@@ -44,7 +42,7 @@
 
 <script>
 	import Card from './Card.vue'
-	import axios from 'axios'
+	// import axios from 'axios'
 	import draggable from 'vuedraggable'
 
 	export default {
@@ -62,11 +60,17 @@
 			}
 		},
 		mounted(){
-			axios.get("http://127.0.0.1:80/vue/cards/getSvg.php")
+			this.$axios.get("http://127.0.0.1:80/vue/cards/getSvg.php")
 			.then(response => this.allCards = response.data)
 			.catch(error => {
 				this.errorMessage = error.message;
+				this.$toasted.show(this.errorMessage, { 
+					theme: "bubble", 
+					position: "top-right", 
+					duration : 5000
+				});
 			});
+			// this.$toasted.show('Hello, I am from ItSolutionStuff.com')
 		},
 		methods:{
 			clickNext()
@@ -81,3 +85,8 @@
 		}
 	}
 </script>
+<style scoped>
+	* {
+		transition: transform 1s;
+	}
+</style>

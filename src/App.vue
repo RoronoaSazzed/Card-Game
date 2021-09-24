@@ -6,10 +6,12 @@
   </transition>
   <transition name="fade">
     <Cards @getCards="getCards($event)" v-show="submitEmail==2"/>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  </transition>
+  <transition name="fade">
+    <PriorityCards @submit3PriorityCards="submit3PriorityCards($event)" :allCards="allCards" v-show="submitEmail==3"/>
   </transition>
 
-  <h1>{{ name }} - {{ email}}</h1>
+  <h1>{{ name }} - {{ email }} - page {{ submitEmail }}</h1>
   <ol>
     <li v-for="link in allCards.green"  :key="link">{{link}}</li>
   </ol>
@@ -19,25 +21,30 @@
   <ol>
     <li v-for="link in allCards.yellow" :key="link">{{link}}</li>
   </ol>
+  <ol>
+    <li v-for="link in allCards.resultCards" :key="link">result: {{link}}</li>
+  </ol>
   </div>
-
+  
 </template>
 
 <script>
 import Credentials from './components/Credentials.vue'
 import Cards from './components/Cards.vue'
+import PriorityCards from './components/priorityCards.vue'
 
 export default {
   name: 'app',
   components: {
     Credentials,
-    Cards
+    Cards,
+    PriorityCards
   },
   data(){
     return {
       email:'',
       name:'',
-      submitEmail : 2,
+      submitEmail : 1,
       allCards:{},
     }
   },
@@ -49,6 +56,16 @@ export default {
       this.submitEmail=obj.submitEmail;
     },
     getCards(obj)
+    {
+      this.submitEmail=obj.submitEmail;
+      let resultCards =[];
+      resultCards.push(obj.allCards.green.shift());
+      resultCards.push(obj.allCards.brown.shift());
+      resultCards.push(obj.allCards.yellow.shift());
+      this.allCards=obj.allCards;
+      this.allCards['resultCards']= resultCards;
+    },
+    submit3PriorityCards(obj)
     {
       this.submitEmail=obj.submitEmail;
       this.allCards=obj.allCards;

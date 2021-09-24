@@ -10,9 +10,13 @@
   "dependencies": {
     "axios": "^0.21.4",
     "core-js": "^2.6.5",
+    "lodash": "^4.17.21",
     "vue": "^2.6.10",
     "vue-draggable-next": "^2.0.1",
+    "vue-lodash": "^2.1.2",
     "vue-scroll-reveal": "^1.0.11",
+    "vue-toasted": "^1.1.28",
+    "vue-toastr": "^2.1.2",
     "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
