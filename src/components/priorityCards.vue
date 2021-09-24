@@ -39,7 +39,7 @@
 		data(){
 			return {
 				submitEmail:3,
-				allCardsData: { "brown": [ "http://127.0.0.1/vue/cards/brown-2.svg", "http://127.0.0.1/vue/cards/brown-3.svg", "http://127.0.0.1/vue/cards/brown-4.svg" ], "green": [ "http://127.0.0.1/vue/cards/green-2.svg", "http://127.0.0.1/vue/cards/green-3.svg", "http://127.0.0.1/vue/cards/green-4.svg" ], "yellow": [ "http://127.0.0.1/vue/cards/yellow-2.svg", "http://127.0.0.1/vue/cards/yellow-3.svg", "http://127.0.0.1/vue/cards/yellow-4.svg" ], "resultCards": [ "http://127.0.0.1/vue/cards/green-1.svg", "http://127.0.0.1/vue/cards/brown-1.svg", "http://127.0.0.1/vue/cards/yellow-1.svg" ] }
+				allCardsData: {}
 			}
 		},
 		methods:{
@@ -51,15 +51,24 @@
 					allCards:this.allCardsData
 				}
 				this.$emit('submit3PriorityCards', obj)
+			},
+			reloadOnPropChange()
+			{
+				localStorage.setItem('storedAllCards', JSON.stringify(this.allCards))
+				let dataFull = localStorage.getItem('storedAllCards');
+				this.allCardsData = JSON.parse(dataFull)
+				localStorage.removeItem('storedAllCards')
 			}
 		},
-		mounted()
+		created()
 		{
-			// let obj = this.lodash.cloneDeep(this.allCards)
-			// this.allCardsData = obj
-			localStorage.setItem('storedAllCards', JSON.stringify(this.allCards))
-			let dataFull = localStorage.getItem('storedAllCards');
-			this.allCardsData = JSON.parse(dataFull)
+			this.reloadOnPropChange()
+		},
+		watch: {
+			allCards() 
+			{
+				this.reloadOnPropChange()
+			}
 		}
 	}
 
