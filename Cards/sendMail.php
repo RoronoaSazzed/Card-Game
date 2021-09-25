@@ -17,11 +17,11 @@ function clear_input($input_data)
 $response['msg'] = 'Something went wrong while sending email.' ;
 $response['status'] = False ;
 
-// if( empty( $_POST['allData'] ) || empty( $_POST['name'] ) || empty( $_POST['email'] ) ) 
-// {
-// 	$response['msg'] = 'Data not found.' ;
-// 	exit( json_encode($response) );
-// }
+if( empty( $_POST['allData'] ) || empty( $_POST['name'] ) || empty( $_POST['email'] ) ) 
+{
+	$response['msg'] = 'Data not found.' ;
+	exit( json_encode($response) );
+}
 
 $allDataObj = $_POST['allData'];
 $name = clear_input( $_POST['name'] ) ;
@@ -42,9 +42,10 @@ $mail_body .= '<div >
 
 // green cards
 $mail_body .= '<div > <p style=" text-align: center; margin: 40px; background-color: #9a9d70; color: white; padding: 10px;">Green Cards</p>';
-          foreach ($allDataObj['green'] as $value) 
+		  $arr =$allDataObj->green;
+          foreach ($arr as $value) 
           {
-          	$mail_body .='<img style=" display: block; width: 20%; margin: 15px auto; border-radius: 4px;" src='.$value.' alt="Green Card" />';
+          	$mail_body .='<img style=" display: block; width: 35%; margin: 15px auto; border-radius: 4px;" src='.$value.' alt="Green Card" />';
           }
 
 $mail_body .='</div>';
@@ -52,9 +53,10 @@ $mail_body .='</div>';
 
 //brown cards
 $mail_body .= '<div > <p style=" text-align: center; margin: 40px; background-color: #a77947; color: white; padding: 10px;">Brown Cards</p>';
-          foreach ($allDataObj['brown'] as $value) 
+		  $arr=$allDataObj->brown;
+          foreach ($arr as $value) 
           {
-          	$mail_body .='<img style=" display: block; width: 20%; margin: 15px auto; border-radius: 4px;" src="'.$value.'" alt="Brown Card" />';
+          	$mail_body .='<img style=" display: block; width: 35%; margin: 15px auto; border-radius: 4px;" src="'.$value.'" alt="Brown Card" />';
           }
 
 $mail_body .='</div>';
@@ -62,9 +64,10 @@ $mail_body .='</div>';
 
 // yellow card
 $mail_body .= '<div > <p style=" text-align: center; margin: 40px; background-color: #dfc479; color: white; padding: 10px;">Yellow Cards</p>';
-          foreach ($allDataObj['yellow'] as $value) 
+		  $arr = $allDataObj->yellow;
+          foreach ($arr as $value) 
           {
-          	$mail_body .='<img style=" display: block; width: 20%; margin: 15px auto; border-radius: 4px;" src="'.$value.'" alt="Yellow Card" />';
+          	$mail_body .='<img style=" display: block; width: 35%; margin: 15px auto; border-radius: 4px;" src="'.$value.'" alt="Yellow Card" />';
           }
 
 $mail_body .='</div>';
@@ -72,16 +75,17 @@ $mail_body .='</div>';
 
 //selected cards
 $mail_body .= '<div > <p style=" text-align: center; margin: 40px; background-color: orange; color: white; padding: 10px;">Selected Cards</p>';
-          foreach ($allDataObj['resultCards'] as $value) 
+		  $arr =$allDataObj->resultCards;
+          foreach ($arr as $value) 
           {
-          	$mail_body .='<img style=" display: block; width: 20%; margin: 15px auto; border-radius: 4px;" src="'.$value.'" alt="Selected Card" />';
+          	$mail_body .='<img style=" display: block; width: 35%; margin: 15px auto; border-radius: 4px;" src="'.$value.'" alt="Selected Card" />';
           }
 
 $mail_body .='</div>';
 //end selected cards
 
 $mail_body .= '</div> </div>';
-exit( $mail_body );
+// exit( $mail_body );
 try
 {
     $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -105,7 +109,7 @@ try
 
     $mail->Body = $mail_body;
 
-    $mail->Send();
+    // $mail->Send();
     $response['msg'] = 'Thanks! An email has been sent successfully.' ;
     $response['status'] = True ;
 }
