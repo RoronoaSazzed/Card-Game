@@ -17,7 +17,7 @@
     <PriorityCards2 @submitDataForEmail="submitDataForEmail($event)" :allCards="allCards" v-show="submitEmail==5"/>
   </transition>
 
-  <h1>{{ name }} - {{ email }} - page {{ submitEmail }}</h1>
+<!--   <h1>{{ name }} - {{ email }} - page {{ submitEmail }}</h1>
   <ol>
     <li v-for="link in allCards.green"  :key="link">{{link}}</li>
   </ol>
@@ -29,7 +29,8 @@
   </ol>
   <ol>
     <li v-for="link in allCards.resultCards" :key="link">result: {{link}}</li>
-  </ol>
+  </ol> -->
+  <p>{{ JSON.stringify(allCards) }}</p>
   </div>
   
 </template>
@@ -56,6 +57,7 @@ export default {
       name:'',
       submitEmail : 1,
       allCards:{},
+      res:{}
     }
   },
   methods:{
@@ -98,7 +100,8 @@ export default {
         name: this.name
       })
       .then(function (response) {
-        this.allCards = response;
+        this.res = JSON.parse(response.data);
+        // this.$forceUpdate();
       })
       .catch(error => {
         this.$toasted.show(error.message, 
