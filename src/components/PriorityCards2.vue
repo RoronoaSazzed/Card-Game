@@ -17,7 +17,7 @@
 			</div>
 
 			<div class="text-center">
-				<button @click="submitFinalData" class="stepButton">Next</button>
+				<button @click="submitFinalData" class="stepButton">Finish</button>
 			</div>
 		</div>
 	</div>

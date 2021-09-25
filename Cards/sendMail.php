@@ -1,7 +1,7 @@
 <?php 
 
 header("Access-Control-Allow-Origin: *");
-header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Methods: GET,POST');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
 require('PHPMailer/src/PHPMailer.php');
@@ -85,19 +85,21 @@ $mail_body .='</div>';
 //end selected cards
 
 $mail_body .= '</div> </div>';
+$mail_body .='<small>Powered by: <a href="https://github.com/AshiqueImran" target="_blank">Ashqiue</a> & <a href="https://github.com/RoronoaSazzed" target="_blank">Sazzed</a></small>';
 // exit( $mail_body );
 try
 {
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
     $mail->isSMTP();                                            // Send using SMTP
+    $mail->SMTPSecure = 'tls';
+
+
     $mail->Host       = 'smtp.mailtrap.io';                    // Set the SMTP server to send through
     // $mail->Host       = '172.16.7.57';
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
     $mail->Username   = 'b3710ca1faebff';                     // SMTP username
     $mail->Password   = '957cc8bbfa26e1';                               // SMTP password
-    // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption;   `PHPMailer::ENCRYPTION_SMTPS` encouraged
-    $mail->SMTPSecure = 'tls';
     $mail->Port       = 2525;
     // $mail->Port       = 25; 
 
@@ -109,7 +111,7 @@ try
 
     $mail->Body = $mail_body;
 
-    // $mail->Send();
+    $mail->Send();
     $response['msg'] = 'Thanks! An email has been sent successfully.' ;
     $response['status'] = True ;
 }

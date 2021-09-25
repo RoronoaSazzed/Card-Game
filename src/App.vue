@@ -30,7 +30,7 @@
   <ol>
     <li v-for="link in allCards.resultCards" :key="link">result: {{link}}</li>
   </ol> -->
-  <p>{{ JSON.stringify(allCards) }}</p>
+  <!-- <p>{{ JSON.stringify(allCards) }}</p> -->
   </div>
   
 </template>
@@ -91,17 +91,38 @@ export default {
     {
       this.submitEmail=obj.submitEmail;
       this.allCards=obj.allCards;
+      this.sendPostReqFroeEmail();
     },
     sendPostReqFroeEmail()
     {
-      this.$axios.post("http://127.0.0.1:80/vue/cards/sendMail.php", {
-        allData: JSON.stringify(this.allCards),
-        email: this.email,
-        name: this.name
-      })
-      .then(function (response) {
-        this.res = JSON.parse(response.data);
-        // this.$forceUpdate();
+      const formData = new FormData();
+      formData.append("allData", JSON.stringify(this.allCards));
+      formData.append("email", this.email);
+      formData.append("name", this.name);
+
+      const header = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+
+      this.$axios.post("http://127.0.0.1:80/vue/cards/sendMail.php", formData , header)
+      .then(response => {
+        this.res = response.data
+        if(this.res && this.res.status)
+        {
+          this.$toasted.show(this.res.msg)
+          this.$forceUpdate()
+        }
+        else
+        {
+          this.$toasted.show( this.res.msg, 
+          { 
+            theme: "bubble", 
+            position: "top-right", 
+            duration : 5000
+          });
+        }
       })
       .catch(error => {
         this.$toasted.show(error.message, 
