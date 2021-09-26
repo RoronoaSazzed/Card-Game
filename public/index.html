@@ -23,6 +23,13 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        transition: transform 1s;
+      }
+      .grab {cursor: -webkit-grab; cursor: grab;}
+      .grab:focus,.grab:active  {cursor: -webkit-grabbing; cursor: grabbing;}
+      .selected
+      {
+        opacity: 0.5;
       }
 
       h3,

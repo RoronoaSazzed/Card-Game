@@ -14,12 +14,3 @@
 		}
 	}
 </script>
-
-<style scoped>
-	.grab {cursor: -webkit-grab; cursor: grab;}
-	.grab:focus,.grab:active  {cursor: -webkit-grabbing; cursor: grabbing;}
-	.selected
-	{
-		opacity: 0.5;
-	}
-</style>

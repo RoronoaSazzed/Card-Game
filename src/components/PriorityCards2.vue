@@ -73,9 +73,3 @@
 	}
 
 </script>
-
-<style scoped>
-	* {
-		transition: transform 1s;
-	}
-</style>
