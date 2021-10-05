@@ -91,13 +91,13 @@ try
 {
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
-    $mail->isSMTP();                                            // Send using SMTP
+    // $mail->isSMTP();                                            // Send using SMTP
     $mail->SMTPSecure = 'tls';
 
 
     $mail->Host       = 'smtp.mailtrap.io';                    // Set the SMTP server to send through
     // $mail->Host       = '172.16.7.57';
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+    // $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
     $mail->Username   = 'b3710ca1faebff';                     // SMTP username
     $mail->Password   = '957cc8bbfa26e1';                               // SMTP password
     $mail->Port       = 2525;
