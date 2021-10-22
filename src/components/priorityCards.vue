@@ -2,11 +2,12 @@
 	<div>
 		<div class="StepDiv" id="stepThree">
 			<h3 class="steps">
-				<span class="stepName">Step 2</span>Your selected top priorities cards
-				are as follows
+				<span class="stepName">Step 2</span> Select 4 cards according to your
+				priority & serialize them vertically from the stacks.
 			</h3>
-			<p class="tootlTips">
-				Hint: You can also prioritize these 3 by dragging.
+			<p class="toolTips">
+				Select one card at a time from the stack & position number to place
+				it.
 			</p>
 			<div class="prioritizedCards"  v-if="allCardsData">
 				<draggable v-model="allCardsData.resultCards">

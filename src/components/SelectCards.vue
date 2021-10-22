@@ -2,8 +2,8 @@
 	<div>
 		<div class="stepDiv" id="stepFour">
 			<h3 class="steps">
-				<span class="stepName">Step 3</span>Select 2 more cards to fulfill the
-				list.
+				<span class="stepName">Step 4</span>Select the 5th Card from the
+        remaining Cards. Double-click on the Stack to open up & pick the 5th one.
 			</h3>
 			<p class="tootlTips">
 				Hint: You can select 2 cards by clicking from your remaining 9 cards below. Click again to unselect.
@@ -11,15 +11,15 @@
 
 			<div class="cardsAllDiv">
 				<div class="cardBox" id="green">
-					<Card2 v-for="link in allCards.green" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)"/>
+					<Card2 v-for="(link,index) in allCards.green" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackGreen" @toggleStack="toggleStack($event)" color="green"/>
 				</div>
 
 				<div class="cardBox" id="brown">
-					<Card2 v-for="link in allCards.brown" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)"/>
+					<Card2 v-for="(link,index) in allCards.brown" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackBrown" @toggleStack="toggleStack($event)" color="brown"/>
 				</div>
 
 				<div class="cardBox" id="yellow">
-					<Card2 v-for="link in allCards.yellow" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)"/>
+					<Card2 v-for="(link,index) in allCards.yellow" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackYellow" @toggleStack="toggleStack($event)" color="yellow"/>
 				</div>
 			</div>
 			<div class="text-center">
@@ -45,7 +45,10 @@
 			return{
 				allCardsData:{},
 				submitEmail:4,
-				selectedCardList:[]
+				selectedCardList:[],
+				isStackGreen:true,
+				isStackYellow:true,
+				isStackBrown:true
 			}
 		},
 		methods:{
@@ -58,7 +61,7 @@
 			},
 			submitToNext()
 			{
-				if(this.selectedCardList.length < 2)
+				if(this.selectedCardList.length < 1)
 				{
 					this.$toasted.show('Must select 2 cards. Selected: '+this.selectedCardList.length)
 				}
@@ -106,14 +109,23 @@
 				{
 					this.selectedCardList.splice(index, 1);
 				}
-				else if (this.selectedCardList.length <2)
+				else if (this.selectedCardList.length <1)
 				{
 					this.selectedCardList.push( refLink )
 				}
 				else
 				{
-					this.$toasted.show('Please select 2 cards.')
+					this.$toasted.show('Please select 1 cards.')
 				}
+			},
+			toggleStack(color)
+			{
+				if(color == 'green')
+				this.isStackGreen = !this.isStackGreen
+				else if (color == 'brown')
+				this.isStackBrown = !this.isStackBrown
+				else if (color == 'yellow')
+				this.isStackYellow = !this.isStackYellow
 			}
 		},
 		created()
