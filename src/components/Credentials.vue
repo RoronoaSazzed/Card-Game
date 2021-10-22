@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<div class="stepDiv" id="stepOne">
+		
+
+		<div class="stepDiv" id="stepZero">
 			<h3 class="steps">Fill Out The info to Start</h3>
 
 			<div v-if="errors.length" class="text-center alert" style="width: 80%; margin: auto;">
@@ -13,12 +15,9 @@
 				<input type="text" v-model="name" placeholder="Your Name *" />
 				<input type="email" v-model="email" placeholder="Email *" />
 			</div>
-			<!-- <h1>{{ name }} - {{ email}}</h1> -->
-
-			<div class="text-center">
-				<button @click="showCards" class="stepButton">Next</button>
-			</div>
+			<button class="stepButton" @click="showCards">Next</button>
 		</div>
+		
 	</div>
 </template>
 

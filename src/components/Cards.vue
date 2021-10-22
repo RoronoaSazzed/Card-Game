@@ -2,17 +2,23 @@
 	<div>
 		<div class="stepDiv" id="stepTwo">
 			<h3 class="steps">
-				<span class="stepName">Step 1</span>List your cards from the top
-				priorities to the lowest accordingly
-			</h3>
-			<p class="tootlTips">
-				Hint: Drag the cards to serialize the way you desire.
-			</p>
+          <span class="stepName">Step 1</span>List your cards from the top
+          priorities to the lowest accordingly
+        </h3>
+
+        <h3>Instruction:</h3>
+        <p class="toolTips">
+          1. Double-click on top of the card to open the stack & Double-click again to close
+          the stack.
+          <br />
+          2. Drag around to stack with the highest prioritized card on top to
+          the lowest at the bottom
+        </p>
 			<div class="cardsAllDiv" v-if="allCards">
 				<div id="green" class="cardBox">
 					<draggable v-model="allCards.green">
 						<transition-group>
-							<Card v-for="link in allCards.green" :url="link" :key="link" />
+							<Card v-for="(link,index) in allCards.green" :url="link" :key="link" :cardIndex="index" :isStack="isStackGreen" @toggleStack="toggleStack($event)" color="green"/>
 						</transition-group>
 					</draggable>
 				</div>
@@ -20,14 +26,14 @@
 					<!-- <Card v-for="link in allCards.brown" :url="link" :key="link"/> -->
 					<draggable v-model="allCards.brown">
 						<transition-group>
-							<Card v-for="link in allCards.brown" :url="link" :key="link" />
+							<Card v-for="(link,index) in allCards.brown" :url="link" :key="link" :cardIndex="index" :isStack="isStackBrown" @toggleStack="toggleStack($event)" color="brown"/>
 						</transition-group>
 					</draggable>
 				</div>
 				<div id="yellow" class="cardBox">
 					<draggable v-model="allCards.yellow">
 						<transition-group>
-							<Card v-for="link in allCards.yellow" :url="link" :key="link" />
+							<Card v-for="(link,index) in allCards.yellow" :url="link" :key="link" :cardIndex="index" :isStack="isStackYellow" @toggleStack="toggleStack($event)" color="yellow"/>
 						</transition-group>
 					</draggable>
 				</div>
@@ -56,7 +62,10 @@
 			return{
 				allCards:{},
 				errorMessage:'',
-				submitEmail:2
+				submitEmail:2,
+				isStackGreen:true,
+				isStackYellow:true,
+				isStackBrown:true
 			}
 		},
 		mounted(){
@@ -81,6 +90,15 @@
 					allCards:this.allCards
 				}
 				this.$emit('getCards', obj)
+			},
+			toggleStack(color)
+			{
+				if(color == 'green')
+				this.isStackGreen = !this.isStackGreen
+				else if (color == 'brown')
+				this.isStackBrown = !this.isStackBrown
+				else if (color == 'yellow')
+				this.isStackYellow = !this.isStackYellow
 			}
 		}
 	}
