@@ -70,12 +70,13 @@ export default {
     getCards(obj)
     {
       this.submitEmail=obj.submitEmail;
-      let resultCards =[];
+      /*let resultCards =[];
       resultCards.push(obj.allCards.green.shift());
       resultCards.push(obj.allCards.brown.shift());
       resultCards.push(obj.allCards.yellow.shift());
+      this.allCards['resultCards']= resultCards;*/
       this.allCards=obj.allCards;
-      this.allCards['resultCards']= resultCards;
+      this.allCards['resultCards']= [];
     },
     submit3PriorityCards(obj)
     {

@@ -2,24 +2,21 @@
 	<div>
 		<div class="stepDiv" id="stepFour">
 			<h3 class="steps">
-				<span class="stepName">Step 4</span>Select the 5th Card from the
+				<span class="stepName">Step 3</span>Select the 5th Card from the
         remaining Cards. Double-click on the Stack to open up & pick the 5th one.
 			</h3>
-			<p class="tootlTips">
-				Hint: You can select 2 cards by clicking from your remaining 9 cards below. Click again to unselect.
-			</p>
 
 			<div class="cardsAllDiv">
 				<div class="cardBox" id="green">
-					<Card2 v-for="(link,index) in allCards.green" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackGreen" @toggleStack="toggleStack($event)" color="green"/>
+					<Card2 v-for="(link,index) in allCards.green.slice().reverse()" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackGreen" @toggleStack="toggleStack($event)" color="green"/>
 				</div>
 
 				<div class="cardBox" id="brown">
-					<Card2 v-for="(link,index) in allCards.brown" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackBrown" @toggleStack="toggleStack($event)" color="brown"/>
+					<Card2 v-for="(link,index) in allCards.brown.slice().reverse()" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackBrown" @toggleStack="toggleStack($event)" color="brown"/>
 				</div>
 
 				<div class="cardBox" id="yellow">
-					<Card2 v-for="(link,index) in allCards.yellow" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackYellow" @toggleStack="toggleStack($event)" color="yellow"/>
+					<Card2 v-for="(link,index) in allCards.yellow.slice().reverse()" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackYellow" @toggleStack="toggleStack($event)" color="yellow"/>
 				</div>
 			</div>
 			<div class="text-center">

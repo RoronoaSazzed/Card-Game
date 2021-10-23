@@ -3,7 +3,7 @@
 		<div class="stepDiv" id="stepFive">
 			<h3 class="steps">
 				<span class="stepName">Final Step</span>Your selected cards are listed
-				according to priority-
+				according to priority.
 			</h3>
 			<p class="tootlTips">
 				Hint: You can also re arrange these cards by dragging.

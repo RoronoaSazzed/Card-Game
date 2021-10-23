@@ -6,10 +6,25 @@
 				priority & serialize them vertically from the stacks.
 			</h3>
 			<p class="toolTips">
-				Select one card at a time from the stack & position number to place
-				it.
+				Select one card at a time from the stack.
 			</p>
-			<div class="prioritizedCards"  v-if="allCardsData">
+			<div class="cardsAllDiv">
+				<div class="cardBox" id="green">
+					<Card2 v-for="(link,index) in allCardsData.green" :url="link" :key="link" :cardIndex="index" @toggleSelect="cardClicked($event)" isStack="green"/>
+				</div>
+
+				<div class="cardBox" id="brown">
+					<Card2 v-for="(link,index) in allCardsData.brown" :url="link" :key="link" :cardIndex="index" @toggleSelect="cardClicked($event)" isStack="brown" />
+				</div>
+
+				<div class="cardBox" id="yellow">
+					<Card2 v-for="(link,index) in allCardsData.yellow" :url="link" :key="link" :cardIndex="index" @toggleSelect="cardClicked($event)" isStack="yellow" />
+				</div>
+			</div>
+			<p class="toolTips">
+				You can serialize them vertically by dragging.
+			</p>
+			<div class="prioritizedCards"  v-if="allCardsData.resultCards">
 				<draggable v-model="allCardsData.resultCards">
 					<transition-group>
 						<Card v-for="link in allCardsData.resultCards" :url="link" :key="link" />
@@ -26,6 +41,7 @@
 
 <script>
 	import Card from './Card.vue'
+	import Card2 from './Card2.vue'
 	import draggable from 'vuedraggable'
 
 	export default {
@@ -35,6 +51,7 @@
 		},
 		components: {
 			Card,
+			Card2,
 			draggable
 		},
 		data(){
@@ -46,12 +63,19 @@
 		methods:{
 			clickNextTwo()
 			{
-				this.submitEmail=4;
-				const obj = {
-					submitEmail:this.submitEmail,
-					allCards:this.allCardsData
+				if(this.allCardsData.resultCards.length < 4 )
+				{
+					this.$toasted.show('Select 4 cards.');
 				}
-				this.$emit('submit3PriorityCards', obj)
+				else
+				{
+					this.submitEmail=4;
+					const obj = {
+						submitEmail:this.submitEmail,
+						allCards:this.allCardsData
+					}
+					this.$emit('submit3PriorityCards', obj)
+				}
 			},
 			reloadOnPropChange()
 			{
@@ -59,6 +83,31 @@
 				let dataFull = localStorage.getItem('storedAllCards');
 				this.allCardsData = JSON.parse(dataFull)
 				localStorage.removeItem('storedAllCards')
+			},
+			cardClicked(refUrl)
+			{
+				const index = this.allCardsData.resultCards.indexOf( refUrl )
+				if(this.allCardsData.resultCards.length >= 4 )
+				{
+					this.$toasted.show('Select 4 cards.');
+				}
+				else if (index <= -1) //in array
+				{
+					this.allCardsData.resultCards.push(refUrl);
+					this.removeFromParentList(refUrl , ['green','brown','yellow']);
+				}
+				
+			},
+			removeFromParentList(linkValue , listNames=[])
+			{
+				for (let i = 0; i < listNames.length; i++)
+				{ 
+					const index = this.allCardsData[ listNames[i] ].indexOf( linkValue )
+					if (index > -1) //in array
+					{
+						this.allCardsData[ listNames[i] ].splice(index, 1);
+					}
+				}
 			}
 		},
 		created()
@@ -74,4 +123,6 @@
 	}
 
 </script>
+
+
 
