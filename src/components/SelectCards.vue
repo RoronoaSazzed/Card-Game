@@ -19,6 +19,12 @@
 					<Card2 v-for="(link,index) in allCards.yellow.slice().reverse()" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackYellow" @toggleStack="toggleStack($event)" color="yellow"/>
 				</div>
 			</div>
+			<p class="toolTips">
+				Previously selected cards:
+			</p>
+			<div class="prioritizedCards"  v-if="allCardsData.resultCards">
+				<Card v-for="link in allCardsData.resultCards" :url="link" :key="link" />
+			</div>
 			<div class="text-center">
 				<button class="stepButton" @click="submitToNext">Next</button>
 			</div>
@@ -28,11 +34,13 @@
 
 <script>
 	import Card2 from './Card2.vue'
+	import Card from './Card.vue'
 
 	export default {
 		name: 'SelectCards',
 		components: {
-			Card2
+			Card2,
+			Card
 		},
 		props:{
 			allCards: Object

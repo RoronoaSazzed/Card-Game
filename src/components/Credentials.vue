@@ -15,7 +15,9 @@
 				<input type="text" v-model="name" placeholder="Your Name *" />
 				<input type="email" v-model="email" placeholder="Email *" />
 			</div>
-			<button class="stepButton" @click="showCards">Next</button>
+			<div class="text-center">
+				<button class="stepButton" @click="showCards">Next</button>
+			</div>
 		</div>
 		
 	</div>
