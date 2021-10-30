@@ -2,11 +2,11 @@
 	<div>
 		<div class="stepDiv" id="stepFive">
 			<h3 class="steps">
-				<span class="stepName">Final Step</span>Your selected cards are listed
-				according to priority.
+				<span class="stepName">Results </span>Review Your Top 5 Cards
 			</h3>
-			<p class="tootlTips">
-				Hint: You can also re arrange these cards by dragging.
+			<h3>Instruction:</h3>
+			<p class="toolTips">
+				1. You can click and drag to rearrange.
 			</p>
 			<div class="prioritizedCards"  v-if="allCardsData">
 				<draggable v-model="allCardsData.resultCards">

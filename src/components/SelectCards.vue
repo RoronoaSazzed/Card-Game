@@ -2,20 +2,24 @@
 	<div>
 		<div class="stepDiv" id="stepFour">
 			<h3 class="steps">
-				<span class="stepName">Step 3</span>Select the 5th Card from the
-        remaining Cards. Double-click on the Stack to open up & pick the 5th one.
+				<span class="stepName">Step 3</span> Select Your Final Card
 			</h3>
+			<h3>Instruction:</h3>
+			<p class="toolTips">
+				1. Double click the stacks to expand.<br />
+				2. Select your 5th and final card.<br />
+			</p>
 
 			<div class="cardsAllDiv">
-				<div class="cardBox" id="green">
+				<div class="cardBox" id="green" v-if="allCards.green">
 					<Card2 v-for="(link,index) in allCards.green.slice().reverse()" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackGreen" @toggleStack="toggleStack($event)" color="green"/>
 				</div>
 
-				<div class="cardBox" id="brown">
+				<div class="cardBox" id="brown" v-if="allCards.brown">
 					<Card2 v-for="(link,index) in allCards.brown.slice().reverse()" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackBrown" @toggleStack="toggleStack($event)" color="brown"/>
 				</div>
 
-				<div class="cardBox" id="yellow">
+				<div class="cardBox" id="yellow" v-if="allCards.yellow">
 					<Card2 v-for="(link,index) in allCards.yellow.slice().reverse()" :url="link" :key="link" :class="getSelectedClass(link)" @toggleSelect="toggleSelect($event)" :cardIndex="index" :isStack="isStackYellow" @toggleStack="toggleStack($event)" color="yellow"/>
 				</div>
 			</div>

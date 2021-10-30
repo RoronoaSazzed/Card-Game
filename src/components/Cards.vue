@@ -2,17 +2,14 @@
 	<div>
 		<div class="stepDiv" id="stepTwo">
 			<h3 class="steps">
-          <span class="stepName">Step 1</span>List your cards from the top
-          priorities to the lowest accordingly
+          <span class="stepName">Step 1</span>Prioritize the Cards
         </h3>
 
         <h3>Instruction:</h3>
         <p class="toolTips">
-          1. Double-click on top of the card to open the stack & Double-click again to close
-          the stack.
-          <br />
-          2. Drag around to stack with the highest prioritized card on top to
-          the lowest at the bottom
+          1. Double click the stack to expand.<br />
+          2. Click and drag to organize the cards from most important to you (top) to least important to you (bottom).<br />
+          3. Double click the top card to collapse the stack.<br />
         </p>
 			<div class="cardsAllDiv" v-if="allCards">
 				<div id="green" class="cardBox">

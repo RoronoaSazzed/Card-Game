@@ -11,7 +11,7 @@
 		props: {
 			url: String,
 			cardIndex:Number,
-			isStack:Boolean,
+			isStack:[Boolean,String],
 			color:String
 		},
 		methods:{
