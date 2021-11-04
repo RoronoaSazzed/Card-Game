@@ -3,7 +3,7 @@
 		
 
 		<div class="stepDiv" id="stepZero">
-			<h3 class="steps">Fill Out The info to Start</h3>
+			<h3 class="steps">Tell us who you are.</h3>
 
 			<div v-if="errors.length" class="text-center alert" style="width: 80%; margin: auto;">
 				<div class="alert-danger" style="padding: 10px">

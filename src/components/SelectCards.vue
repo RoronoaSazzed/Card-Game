@@ -1,10 +1,8 @@
 <template>
 	<div>
 		<div class="stepDiv" id="stepFour">
-			<h3 class="steps">
-				<span class="stepName">Step 3</span> Select Your Final Card
-			</h3>
-			<h3>Instruction:</h3>
+			<h3 class="steps">Step 3</h3>
+			<h3>Instructions:</h3>
 			<p class="toolTips">
 				1. Double click the stacks to expand.<br />
 				2. Select your 5th and final card.<br />
@@ -27,7 +25,7 @@
 				Previously selected cards:
 			</p>
 			<div class="prioritizedCards"  v-if="allCardsData.resultCards">
-				<Card v-for="link in allCardsData.resultCards" :url="link" :key="link" />
+				<Card v-for="(link,index) in allCardsData.resultCards" :index="index+1" showCloseIcon="false" :url="link" :key="link" />
 			</div>
 			<div class="text-center">
 				<button class="stepButton" @click="submitToNext">Next</button>
@@ -72,7 +70,7 @@
 			{
 				if(this.selectedCardList.length < 1)
 				{
-					this.$toasted.show('Must select 2 cards. Selected: '+this.selectedCardList.length)
+					this.$toasted.show('Must select a card. Selected: '+this.selectedCardList.length)
 				}
 				else
 				{

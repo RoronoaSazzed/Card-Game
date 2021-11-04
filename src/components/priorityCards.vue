@@ -1,10 +1,8 @@
 <template>
 	<div>
 		<div class="StepDiv" id="stepThree">
-			<h3 class="steps">
-				<span class="stepName">Step 2</span> Select Your Top 4 Cards
-			</h3>
-			<h3>Instruction:</h3>
+			<h3 class="steps">Step 2</h3>
+			<h3>Instructions:</h3>
 			<p class="toolTips">
 				1. From the top card of each stack, select the card that is the most important to you.<br />
 				2. Now select your next most important.<br />
@@ -30,7 +28,7 @@
 			<div class="prioritizedCards"  v-if="allCardsData.resultCards">
 				<!-- <draggable v-model="allCardsData.resultCards"> -->
 					<!-- <transition-group> -->
-					<Card v-for="(link,index) in allCardsData.resultCards" :index="index+1" :url="link" :key="link" @closeCard="closeCard($event)" />
+					<Card v-for="(link,index) in allCardsData.resultCards" showCloseIcon="true" :index="index+1" :url="link" :key="link" @closeCard="closeCard($event)" />
 					<!-- </transition-group> -->
 				<!-- </draggable> -->
 			</div>

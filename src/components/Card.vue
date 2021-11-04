@@ -2,7 +2,7 @@
 	<div>
 		<div class="row displayClass" v-if="index">
 			<div class="col-sm-5">
-				<h3 class="indexClass"><span v-if="hideCloseButton" @click="closeCard()" aria-hidden="true" class="closeButton">&times;</span> {{ index }} )</h3>
+				<h3 class="indexClass"><span v-if="hideCloseButton && showCloseIcon=='true'" @click="closeCard()" aria-hidden="true" class="closeButton">&times;</span> {{ index }} )</h3>
 			</div>
 			<div class="col-sm-6">
 				<img style="float:left" class="cardSolo grab" :src="url" alt="card" :class="[isSelected ? 'selected' : '' ,hideCard]" @dblclick="clicked()"/>
@@ -22,7 +22,11 @@
 			cardIndex:Number,
 			isStack:[Boolean,String],
 			color:String,
-			index:Number
+			index:Number,
+			showCloseIcon: {
+				type: String,
+				default: 'true'
+			}
 		},
 		data()
 		{

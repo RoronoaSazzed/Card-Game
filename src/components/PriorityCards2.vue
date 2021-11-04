@@ -1,17 +1,16 @@
 <template>
 	<div>
 		<div class="stepDiv" id="stepFive">
-			<h3 class="steps">
-				<span class="stepName">Results </span>Review Your Top 5 Cards
-			</h3>
-			<h3>Instruction:</h3>
+			<h3 class="steps">Results</h3>
+			<h3>Instructions:</h3>
 			<p class="toolTips">
-				1. You can click and drag to rearrange.
+				1. You can click and drag to rearrange.<br />
+				2. Click finish to end the task.
 			</p>
 			<div class="prioritizedCards"  v-if="allCardsData">
 				<draggable v-model="allCardsData.resultCards">
 					<transition-group>
-						<Card v-for="link in allCardsData.resultCards" :url="link" :key="link" />
+						<Card v-for="(link,index) in allCardsData.resultCards" :index="index+1" :url="link" :key="link" showCloseIcon="false" />
 					</transition-group>
 				</draggable>
 			</div>
